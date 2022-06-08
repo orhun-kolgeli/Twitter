@@ -9,9 +9,8 @@
     <string name="sample_username">ok_testacc</string>
     <string name="sample_tweet">This is my tweet!</string>
     <string name="logout">Log Out</string>
-
-
-
+    <string name="what_s_happening">What\'s happening?</string>
+    <string name="tweet">Tweet</string>
 
 
 </resources>
