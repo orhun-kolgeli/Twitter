@@ -20,6 +20,18 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     Context context;
     List<Tweet> tweets;
 
+    // Clean all elements of the recycler
+    public void clear() {
+        tweets.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of items -- change to type used
+    public void addAll(List<Tweet> newTweets) {
+        tweets.addAll(newTweets);
+        notifyDataSetChanged();
+    }
+
     // Pass in context and list of tweets
     public TweetsAdapter(Context context, List<Tweet> tweets) {
         this.context = context;
