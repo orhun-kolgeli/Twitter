@@ -65,19 +65,30 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvBody;
         TextView tvScreenName;
         ImageView ivProfileImage;
+        ImageView ivEmbeddedImage;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvBody = itemView.findViewById(R.id.tvBody);
+            ivEmbeddedImage = itemView.findViewById(R.id.embedded_image);
         }
 
         public void bind(Tweet tweet) {
+            // Bind tweet body, username
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);
+
+            // Bind profile picture
             Glide.with(context)
                     .load(tweet.user.profileImageUrl)
                     .into(ivProfileImage);
+
+            // Bind the embedded image
+            Glide.with(context)
+                    .load(tweet.mediaurl)
+                    .into(ivEmbeddedImage);
+
         }
     }
 }
