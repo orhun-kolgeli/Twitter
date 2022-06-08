@@ -101,7 +101,9 @@ public class TimelineActivity extends AppCompatActivity {
             Tweet tweet = Parcels.unwrap(data.getParcelableExtra("tweet"));
             // Update recyclerView with the new tweet by modifying data source and updating adapter
             tweets.add(0, tweet);
+            // Notify the adapter that an item has been inserted at position 0
             adapter.notifyItemInserted(0);
+            // Smoothly scroll to position 0 after the tweet has been added
             rvTweets.smoothScrollToPosition(0);
         }
         super.onActivityResult(requestCode, resultCode, data);
