@@ -12,4 +12,6 @@
     <string name="what_s_happening">What\'s happening?</string>
     <string name="tweet">Tweet</string>
     <string name="counter_max_length">280</string>
+    <string name="sample_name">Orhun Kolgeli</string>
+    <string name="embedded_image_description">Embedded image</string>
 </resources>

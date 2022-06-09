@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import java.util.List;
@@ -63,6 +64,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     // Define viewholder
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvBody;
+        TextView tvUserName;
         TextView tvScreenName;
         ImageView ivProfileImage;
         ImageView ivEmbeddedImage;
@@ -72,12 +74,14 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvBody = itemView.findViewById(R.id.tvBody);
             ivEmbeddedImage = itemView.findViewById(R.id.embedded_image);
+            tvUserName = itemView.findViewById(R.id.tvUserName);
         }
 
         public void bind(Tweet tweet) {
             // Bind tweet body, username
             tvBody.setText(tweet.body);
-            tvScreenName.setText(tweet.user.screenName);
+            tvScreenName.setText(String.format("@%s", tweet.user.screenName));
+            tvUserName.setText(tweet.user.name);
 
             // Bind profile picture
             Glide.with(context)
@@ -87,6 +91,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             // Bind the embedded image
             Glide.with(context)
                     .load(tweet.mediaurl)
+                    .circleCrop()
+                    .transform(new RoundedCorners(60))
                     .into(ivEmbeddedImage);
 
         }
