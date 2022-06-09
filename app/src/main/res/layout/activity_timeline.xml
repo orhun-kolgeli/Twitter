@@ -16,14 +16,28 @@
         android:minHeight="?attr/actionBarSize"
         app:titleTextColor="@android:color/black"></androidx.appcompat.widget.Toolbar>
 
+    <ImageButton
+        android:id="@+id/btnLogout"
+        android:layout_width="50dp"
+        android:layout_height="181dp"
+        android:layout_alignBottom="@+id/toolbar"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="18dp"
+        android:background="@color/twitter_blue"
+        android:contentDescription="@string/logout"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logout_icon"
+        tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
     <ImageView
         android:id="@+id/twitter_logo"
         android:layout_width="wrap_content"
         android:layout_height="181dp"
         android:layout_alignBottom="@+id/toolbar"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:contentDescription="@string/twitter_logo"
         app:srcCompat="@drawable/twitterlogo"
         tools:ignore="ImageContrastCheck" />
@@ -42,18 +56,10 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp" />
+            android:layout_marginTop="0dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    <Button
-        android:id="@+id/btnLogOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:text="@string/logout" />
 
 </RelativeLayout>
