@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SimpleTweet</string>
+    <string name="app_name">Twitter</string>
     <string name="profile_pic">Profile Picture</string>
     <string name="login_label">Log in</string>
     <string name="intent_scheme">oauth</string>
@@ -14,4 +14,5 @@
     <string name="counter_max_length">280</string>
     <string name="sample_name">Orhun Kolgeli</string>
     <string name="embedded_image_description">Embedded image</string>
+    <string name="compose">Compose</string>
 </resources>
