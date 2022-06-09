@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +16,20 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder> {
     Context context;
     List<Tweet> tweets;
+
+    public static final String TAG = "TweetsAdapter";
+    private static final int SECOND_MILLIS = 1000;
+    private static final int MINUTE_MILLIS = 60 * SECOND_MILLIS;
+    private static final int HOUR_MILLIS = 60 * MINUTE_MILLIS;
+    private static final int DAY_MILLIS = 24 * HOUR_MILLIS;
 
     // Clean all elements of the recycler
     public void clear() {
@@ -53,7 +63,11 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         // Get the tweet
         Tweet tweet = tweets.get(position);
         // Bind tweet with viewHolder
-        holder.bind(tweet);
+        try {
+            holder.bind(tweet);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -77,11 +91,13 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvUserName = itemView.findViewById(R.id.tvUserName);
         }
 
-        public void bind(Tweet tweet) {
+        public void bind(Tweet tweet) throws ParseException {
+            String relativeTime = getRelativeTimeAgo(tweet.createdAt);
             // Bind tweet body, username
             tvBody.setText(tweet.body);
-            tvScreenName.setText(String.format("@%s", tweet.user.screenName));
+            tvScreenName.setText(String.format("@%s · %s", tweet.user.screenName, relativeTime));
             tvUserName.setText(tweet.user.name);
+
 
             // Bind profile picture
             Glide.with(context)
@@ -96,5 +112,38 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                     .into(ivEmbeddedImage);
 
         }
+    }
+
+    public String getRelativeTimeAgo(String rawJsonDate) throws ParseException {
+        String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
+        SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
+        sf.setLenient(true);
+
+        try {
+            long time = sf.parse(rawJsonDate).getTime();
+            long now = System.currentTimeMillis();
+
+            final long diff = now - time;
+            if (diff < MINUTE_MILLIS) {
+                return "just now";
+            } else if (diff < 2 * MINUTE_MILLIS) {
+                return "a minute ago";
+            } else if (diff < 50 * MINUTE_MILLIS) {
+                return diff / MINUTE_MILLIS + "m";
+            } else if (diff < 90 * MINUTE_MILLIS) {
+                return "an hour ago";
+            } else if (diff < 24 * HOUR_MILLIS) {
+                return diff / HOUR_MILLIS + "h";
+            } else if (diff < 48 * HOUR_MILLIS) {
+                return "yesterday";
+            } else {
+                return diff / DAY_MILLIS + "d";
+            }
+        } catch (ParseException e) {
+            Log.i(TAG, "getRelativeTimeAgo failed");
+            e.printStackTrace();
+        }
+
+        return "";
     }
 }
