@@ -104,13 +104,17 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
                     .load(tweet.user.profileImageUrl)
                     .into(ivProfileImage);
 
-            // Bind the embedded image
-            Glide.with(context)
-                    .load(tweet.mediaurl)
-                    .circleCrop()
-                    .transform(new RoundedCorners(60))
-                    .into(ivEmbeddedImage);
-
+            if (tweet.mediaurl.isEmpty()) {
+                ivEmbeddedImage.setVisibility(View.GONE);
+            } else {
+                ivEmbeddedImage.setVisibility(View.VISIBLE);
+                // Bind the embedded image
+                Glide.with(context)
+                        .load(tweet.mediaurl)
+                        .circleCrop()
+                        .transform(new RoundedCorners(60))
+                        .into(ivEmbeddedImage);
+            }
         }
     }
 

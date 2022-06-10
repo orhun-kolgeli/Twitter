@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
@@ -22,7 +23,7 @@ public class ComposeActivity extends AppCompatActivity {
 
     public static final int MAX_TWEET_LENGTH = 280;
     public static final String TAG = "ComposeActivity";
-    Button btnTweet;
+    ImageButton btnTweet;
     EditText etCompose;
     TwitterClient client;
 
@@ -32,7 +33,7 @@ public class ComposeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_compose);
         client = TwitterApp.getRestClient(this);
         // Initialize views
-        btnTweet = findViewById(R.id.btnTweet);
+        btnTweet = findViewById(R.id.imgBtnTweet);
         etCompose = findViewById(R.id.etCompose);
 
         btnTweet.setOnClickListener(new View.OnClickListener() {

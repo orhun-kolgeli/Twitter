@@ -7,11 +7,44 @@
     android:layout_height="match_parent"
     tools:context=".ComposeActivity">
 
+  <TextView
+      android:id="@+id/tweet"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignTop="@+id/imgBtnTweet"
+      android:layout_alignBottom="@+id/imgBtnTweet"
+      android:layout_marginTop="15dp"
+      android:layout_marginEnd="1dp"
+      android:layout_marginBottom="15dp"
+      android:layout_toStartOf="@+id/imgBtnTweet"
+      android:text="@string/tweet"
+      android:textColor="@color/twitter_blue"
+      android:textStyle="bold"
+      tools:ignore="TextContrastCheck" />
+
+  <ImageButton
+      android:id="@+id/imgBtnTweet"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/input_layout"
+      android:layout_alignBottom="@+id/input_layout"
+      android:layout_alignParentEnd="true"
+      android:layout_marginTop="9dp"
+      android:layout_marginEnd="10dp"
+      android:layout_marginBottom="-59dp"
+      android:background="#00FFFFFF"
+      android:contentDescription="@string/tweet"
+      android:minHeight="48dp"
+      app:srcCompat="@drawable/vector_compose_shortcut"
+      tools:ignore="ImageContrastCheck,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+
   <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/input_layout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       app:counterEnabled="true"
       app:counterMaxLength="@string/counter_max_length">
+
     <EditText
         android:id="@+id/etCompose"
         android:layout_width="match_parent"
@@ -23,19 +56,12 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/what_s_happening"
+        android:importantForAutofill="no"
         android:inputType="textMultiLine"
         android:minLines="5"
         android:textColorHint="#546E7A"
-        android:importantForAutofill="no" />
+        tools:ignore="SpeakableTextPresentCheck" />
+
   </com.google.android.material.textfield.TextInputLayout>
 
-  <Button
-      android:id="@+id/btnTweet"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/etCompose"
-      android:layout_alignParentEnd="true"
-      android:layout_marginTop="5dp"
-      android:layout_marginEnd="5dp"
-      android:text="@string/tweet" />
 </RelativeLayout>
