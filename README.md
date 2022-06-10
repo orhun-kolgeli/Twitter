@@ -39,7 +39,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-![Demo](https://github.com/orhun-kolgeli/Twitter/blob/main/TwGIF.gif)
+![Demo](https://github.com/orhun-kolgeli/Twitter/blob/main/Demo.gif)
 
 ## Notes
 
