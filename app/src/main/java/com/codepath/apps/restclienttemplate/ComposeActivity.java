@@ -23,7 +23,7 @@ public class ComposeActivity extends AppCompatActivity {
 
     public static final int MAX_TWEET_LENGTH = 280;
     public static final String TAG = "ComposeActivity";
-    ImageButton btnTweet;
+    Button btnTweet;
     EditText etCompose;
     TwitterClient client;
 
@@ -33,7 +33,7 @@ public class ComposeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_compose);
         client = TwitterApp.getRestClient(this);
         // Initialize views
-        btnTweet = findViewById(R.id.imgBtnTweet);
+        btnTweet = findViewById(R.id.btnTweet);
         etCompose = findViewById(R.id.etCompose);
 
         btnTweet.setOnClickListener(new View.OnClickListener() {
@@ -42,14 +42,13 @@ public class ComposeActivity extends AppCompatActivity {
                 // Check if the composed tweet is valid
                 String tweetContent = etCompose.getText().toString();
                 if (tweetContent.isEmpty()) {
-                    Toast.makeText(ComposeActivity.this, "Tweet cannot be empty",
+                    Toast.makeText(ComposeActivity.this, R.string.empty_tweet,
                             Toast.LENGTH_LONG).show();
+                    return;
                 } else if (tweetContent.length() > MAX_TWEET_LENGTH) {
                     Toast.makeText(ComposeActivity.this,
-                            "Tweet cannot be longer than 140 chars", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(ComposeActivity.this,
-                            tweetContent, Toast.LENGTH_LONG).show();
+                            R.string.too_long_tweet, Toast.LENGTH_LONG).show();
+                    return;
                 }
                 // Make an API call to Twitter to publish the tweet
                 client.publishTweet(tweetContent, new JsonHttpResponseHandler() {
@@ -75,7 +74,6 @@ public class ComposeActivity extends AppCompatActivity {
                         Log.e(TAG, "onFailure to publish tweet", throwable);
                     }
                 });
-
             }
         });
     }

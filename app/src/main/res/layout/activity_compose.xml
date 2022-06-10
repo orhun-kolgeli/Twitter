@@ -7,42 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".ComposeActivity">
 
-  <TextView
-      android:id="@+id/tweet"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignTop="@+id/imgBtnTweet"
-      android:layout_alignBottom="@+id/imgBtnTweet"
-      android:layout_marginTop="15dp"
-      android:layout_marginEnd="1dp"
-      android:layout_marginBottom="15dp"
-      android:layout_toStartOf="@+id/imgBtnTweet"
-      android:text="@string/tweet"
-      android:textColor="@color/twitter_blue"
-      android:textStyle="bold"
-      tools:ignore="TextContrastCheck" />
-
-  <ImageButton
-      android:id="@+id/imgBtnTweet"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/input_layout"
-      android:layout_alignBottom="@+id/input_layout"
-      android:layout_alignParentEnd="true"
-      android:layout_marginTop="-187dp"
-      android:layout_marginEnd="10dp"
-      android:layout_marginBottom="137dp"
-      android:background="#00FFFFFF"
-      android:contentDescription="@string/tweet"
-      android:minHeight="48dp"
-      app:srcCompat="@drawable/vector_compose_shortcut"
-      tools:ignore="ImageContrastCheck,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
-
   <com.google.android.material.textfield.TextInputLayout
       android:id="@+id/input_layout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginTop="20dp"
+      android:layout_marginTop="0dp"
       app:counterEnabled="true"
       app:counterMaxLength="@string/counter_max_length">
 
@@ -52,8 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/what_s_happening"
@@ -64,5 +33,19 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
   </com.google.android.material.textfield.TextInputLayout>
+
+  <Button
+      android:id="@+id/btnTweet"
+      android:layout_width="77dp"
+      android:layout_height="36dp"
+      android:layout_below="@+id/input_layout"
+      android:layout_alignParentEnd="true"
+      android:layout_marginTop="-16dp"
+      android:layout_marginEnd="43dp"
+      android:background="@color/twitter_blue"
+      android:text="@string/tweet"
+      android:textColor="#FFFFFF"
+      tools:ignore="TextContrastCheck" />
+
 
 </RelativeLayout>
