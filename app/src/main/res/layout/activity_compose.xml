@@ -30,7 +30,7 @@
       android:layout_alignBottom="@+id/input_layout"
       android:layout_alignParentEnd="true"
       android:layout_marginTop="-187dp"
-      android:layout_marginEnd="1dp"
+      android:layout_marginEnd="10dp"
       android:layout_marginBottom="137dp"
       android:background="#00FFFFFF"
       android:contentDescription="@string/tweet"

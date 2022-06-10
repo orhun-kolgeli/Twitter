@@ -38,8 +38,13 @@ public class Tweet {
     public static String getEntity(JSONObject jsonObject) throws JSONException {
         JSONArray allMedia = jsonObject.has("media") ? jsonObject.getJSONArray("media") : null;
         String url = "";
+        String http_url = "";
         if (allMedia != null) {
             url =  allMedia.getJSONObject(0).getString("media_url_https");
+            http_url =  allMedia.getJSONObject(0).getString("media_url");
+            if (http_url.contains("video")) {
+                return "";
+            }
         }
         return url;
     }
