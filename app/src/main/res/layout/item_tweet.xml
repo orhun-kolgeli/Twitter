@@ -28,6 +28,7 @@
         tools:text="@string/sample_username" />
 
     <TextView
+        android:linksClickable="true"
         android:id="@+id/tvBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,4 +68,20 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_toEndOf="@+id/tvScreenName" />
+
+    <ImageButton
+        android:id="@+id/ibReply"
+        android:layout_width="30dp"
+        android:layout_height="28dp"
+        android:layout_below="@+id/embedded_image"
+        android:layout_alignStart="@+id/embedded_image"
+        android:layout_alignEnd="@+id/embedded_image"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="0dp"
+        android:background="@color/twitter_blue"
+        android:contentDescription="@string/reply"
+        app:srcCompat="@drawable/reply_white"
+        tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
 </RelativeLayout>

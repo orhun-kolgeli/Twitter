@@ -1,15 +1,24 @@
 package com.codepath.apps.restclienttemplate;
 
+
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -24,12 +33,14 @@ import java.util.Locale;
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder> {
     Context context;
     List<Tweet> tweets;
+    Activity activity;
 
     public static final String TAG = "TweetsAdapter";
     private static final int SECOND_MILLIS = 1000;
     private static final int MINUTE_MILLIS = 60 * SECOND_MILLIS;
     private static final int HOUR_MILLIS = 60 * MINUTE_MILLIS;
     private static final int DAY_MILLIS = 24 * HOUR_MILLIS;
+    private final int REQUEST_CODE = 20;
 
     // Clean all elements of the recycler
     public void clear() {
@@ -47,6 +58,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     public TweetsAdapter(Context context, List<Tweet> tweets) {
         this.context = context;
         this.tweets = tweets;
+        this.activity=(Activity) context;
+
     }
 
     // For each row, inflate the layout
@@ -82,6 +95,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         TextView tvScreenName;
         ImageView ivProfileImage;
         ImageView ivEmbeddedImage;
+        ImageButton ibReply;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
@@ -89,6 +103,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvBody = itemView.findViewById(R.id.tvBody);
             ivEmbeddedImage = itemView.findViewById(R.id.embedded_image);
             tvUserName = itemView.findViewById(R.id.tvUserName);
+            ibReply = (ImageButton) itemView.findViewById(R.id.ibReply);
         }
 
         public void bind(Tweet tweet) throws ParseException {
@@ -97,6 +112,15 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvBody.setText(tweet.body);
             tvScreenName.setText(String.format("@%s · %s", tweet.user.screenName, relativeTime));
             tvUserName.setText(tweet.user.name);
+            ibReply.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, ComposeActivity.class);
+                    intent.putExtra("screenName", "@" + tweet.user.screenName + " ");
+                    activity.startActivityForResult(intent, REQUEST_CODE);
+
+                }
+            });
 
             // Bind profile picture
             Glide.with(context)

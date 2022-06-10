@@ -36,6 +36,10 @@ public class ComposeActivity extends AppCompatActivity {
         btnTweet = findViewById(R.id.btnTweet);
         etCompose = findViewById(R.id.etCompose);
 
+        String screenName = getIntent().getExtras().getString("screenName");
+        if (!screenName.isEmpty()) {
+            etCompose.setText(screenName);
+        }
         btnTweet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

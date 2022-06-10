@@ -10,12 +10,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
@@ -24,11 +25,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.parceler.Parcels;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import okhttp3.Headers;
 
@@ -56,6 +54,7 @@ public class TimelineActivity extends AppCompatActivity {
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         rvTweets = findViewById(R.id.rvTweets);
         btnLogout = (ImageButton) findViewById(R.id.btnLogout);
+
 
         // Find the toolbar view inside the activity layout
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -91,6 +90,7 @@ public class TimelineActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         // Initialize tweets and adapter
         tweets = new ArrayList<>();
         adapter = new TweetsAdapter(this, tweets);
@@ -119,7 +119,6 @@ public class TimelineActivity extends AppCompatActivity {
     public void loadNextDataFromApi(int offset) {
         // Send an API request to retrieve appropriate paginated data
         // Send the request including an offset value (i.e `page`) as a query parameter.
-        long min_id = getMinId(tweets);
         client.getHomeTimeline(offset, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
