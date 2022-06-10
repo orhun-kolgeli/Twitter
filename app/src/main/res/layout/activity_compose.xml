@@ -29,9 +29,9 @@
       android:layout_below="@+id/input_layout"
       android:layout_alignBottom="@+id/input_layout"
       android:layout_alignParentEnd="true"
-      android:layout_marginTop="9dp"
-      android:layout_marginEnd="10dp"
-      android:layout_marginBottom="-59dp"
+      android:layout_marginTop="-187dp"
+      android:layout_marginEnd="1dp"
+      android:layout_marginBottom="137dp"
       android:background="#00FFFFFF"
       android:contentDescription="@string/tweet"
       android:minHeight="48dp"
@@ -42,6 +42,7 @@
       android:id="@+id/input_layout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
       app:counterEnabled="true"
       app:counterMaxLength="@string/counter_max_length">
 

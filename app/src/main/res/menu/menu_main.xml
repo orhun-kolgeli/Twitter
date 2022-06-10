@@ -6,5 +6,13 @@
         android:id="@+id/compose"
         android:icon="@drawable/vector_compose_fab"
         android:title="@string/compose"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/miActionProgress"
+        android:title="Loading..."
+        android:visible="false"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        app:actionLayout="@layout/action_view_progress" />
 </menu>
