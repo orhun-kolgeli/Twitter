@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
 
+import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.codepath.oauth.OAuthBaseClient;
@@ -33,6 +34,7 @@ public class TwitterClient extends OAuthBaseClient {
 	public static final String REST_CALLBACK_URL_TEMPLATE = "intent://%s#Intent;action=android.intent.action.VIEW;scheme=%s;package=%s;S.browser_fallback_url=%s;end";
 	public static final String HOME_TIMELINE_JSON = "statuses/home_timeline.json";
 	public static final String STATUS_UPDATE_JSON = "statuses/update.json";
+	public static final int TWEET_COUNT = 8;
 
 	public TwitterClient(Context context) {
 		super(context, REST_API_INSTANCE,
@@ -48,11 +50,16 @@ public class TwitterClient extends OAuthBaseClient {
 		String apiUrl = getApiUrl(HOME_TIMELINE_JSON);
 		RequestParams params = new RequestParams();
 		params.put("tweet_mode", "extended");
+		params.put("count", TWEET_COUNT);
 		client.get(apiUrl, params, handler);
+	}
 
-		// Can specify query string params directly or through RequestParams.
-		params.put("count", 25);
-		params.put("since_id", 1); // will modify to implement refresh
+	public void getHomeTimeline(Tweet tweet, int page, JsonHttpResponseHandler handler) {
+		String apiUrl = getApiUrl(HOME_TIMELINE_JSON);
+		RequestParams params = new RequestParams();
+		params.put("tweet_mode", "extended");
+		params.put("count", TWEET_COUNT);
+		params.put("page", page);
 		client.get(apiUrl, params, handler);
 	}
 

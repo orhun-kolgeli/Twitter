@@ -18,6 +18,7 @@ public class Tweet {
     public String createdAt;
     public User user;
     public String mediaurl;
+    public int id;
 
 
     public Tweet() {} // make parcelable
@@ -32,6 +33,7 @@ public class Tweet {
         tweet.mediaurl = getEntity(jsonObject.getJSONObject("entities"));
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+        tweet.id = jsonObject.getInt("id");
         return tweet;
     }
 
