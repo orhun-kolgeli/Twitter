@@ -34,7 +34,7 @@ public class TwitterClient extends OAuthBaseClient {
 	public static final String REST_CALLBACK_URL_TEMPLATE = "intent://%s#Intent;action=android.intent.action.VIEW;scheme=%s;package=%s;S.browser_fallback_url=%s;end";
 	public static final String HOME_TIMELINE_JSON = "statuses/home_timeline.json";
 	public static final String STATUS_UPDATE_JSON = "statuses/update.json";
-	public static final int TWEET_COUNT = 8;
+	public static final int TWEET_COUNT = 100;
 
 	public TwitterClient(Context context) {
 		super(context, REST_API_INSTANCE,
@@ -54,7 +54,7 @@ public class TwitterClient extends OAuthBaseClient {
 		client.get(apiUrl, params, handler);
 	}
 
-	public void getHomeTimeline(Tweet tweet, int page, JsonHttpResponseHandler handler) {
+	public void getHomeTimeline(int page, JsonHttpResponseHandler handler) {
 		String apiUrl = getApiUrl(HOME_TIMELINE_JSON);
 		RequestParams params = new RequestParams();
 		params.put("tweet_mode", "extended");

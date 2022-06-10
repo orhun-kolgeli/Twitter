@@ -119,7 +119,8 @@ public class TimelineActivity extends AppCompatActivity {
     public void loadNextDataFromApi(int offset) {
         // Send an API request to retrieve appropriate paginated data
         // Send the request including an offset value (i.e `page`) as a query parameter.
-        client.getHomeTimeline(tweets.get(0), offset, new JsonHttpResponseHandler() {
+        long min_id = getMinId(tweets);
+        client.getHomeTimeline(offset, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 try {
@@ -139,7 +140,7 @@ public class TimelineActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-
+                Log.e(TAG, "loadNextDataFromApi error");
             }
         });
     }
