@@ -3,6 +3,7 @@ package com.codepath.apps.restclienttemplate;
 import android.content.Context;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.apps.restclienttemplate.models.User;
 import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.codepath.oauth.OAuthBaseClient;
@@ -34,6 +35,7 @@ public class TwitterClient extends OAuthBaseClient {
 	public static final String REST_CALLBACK_URL_TEMPLATE = "intent://%s#Intent;action=android.intent.action.VIEW;scheme=%s;package=%s;S.browser_fallback_url=%s;end";
 	public static final String HOME_TIMELINE_JSON = "statuses/home_timeline.json";
 	public static final String STATUS_UPDATE_JSON = "statuses/update.json";
+	public static final String FAVORITE_JSON = "favorites/create.json";
 	public static final int TWEET_COUNT = 100;
 
 	public TwitterClient(Context context) {

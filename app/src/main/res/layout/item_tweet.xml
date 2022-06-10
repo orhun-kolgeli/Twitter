@@ -79,9 +79,8 @@
         android:layout_marginStart="300dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="0dp"
-        android:background="@color/twitter_blue"
         android:contentDescription="@string/reply"
-        app:srcCompat="@drawable/reply_white"
+        app:srcCompat="@drawable/ic_vector_compose_dm"
         tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
 </RelativeLayout>
